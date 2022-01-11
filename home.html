@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+    <title>task</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>  
+	<script type="text/javascript" src="js/libs/angular-filter.min.js"></script>  
+	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body ng-app="myApp">
+<header class="trip-search__header">
+  <div class="container">
+	<h1>Trip Sorter</h1>
+  </div><!-- /.container-fluid -->
+</header>
+<main class="container" ng-controller="TripSearchCtrl as tripCtrl" ng-cloak>
+	<div class="row">
+        <aside class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					Search
+				</div>
+				<div class="panel-body">
+					<form class="trip-search__form">
+						<label for="from_field" class="input-group block">
+							From: 
+							<select id="from_field" class="block w100" ng-model="fromLBL">
+								  <option ng-repeat="deal in deals | unique:'departure'" value="{{deal.departure}}">{{deal.departure}}</option>
+							</select>
+						</label>
+						<label for="to_field" class="input-group block">
+							To: 
+							<select id="to_field" class="block w100" ng-model="toLBL"  >
+								<option ng-repeat="deal in deals | unique:'arrival'" value="{{deal.arrival}}">{{deal.arrival}}</option>
+							</select>
+						</label>
+						<div class="btn-group btn-group-justified" role="group" aria-label="Filters">
+						 
+						  <a href="#" role="button" class="btn btn-default" ng-class='{"selected":option==filterLbl}' ng-repeat="option in sortOptions" ng-click="setSort(option)">{{option}}</a>
+			   
+						</div>
+						<p class="trip-search__error-msg" ng-show="isErrorVisible">{{errorMsg}}</p>
+						<button type="button" class="btn btn-primary" ng-click="searchData()">
+						  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+						</button>
+					</form>
+				</div>
+			</div>
+		</aside>
+		<div class="col-md-8 ">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					Results
+				</div>
+				<div class="panel-body">
+					<section class="trip-search__results fade" ng-class="{default: isVisible}">
+						<ul class="list-group">
+						  <li ng-class-odd="'odd'" class="list-group-item clfx" ng-repeat="deal in deals | orderBy:sort | filter: { departure: fromLBL, arrival : toLBL } ">
+							<div class="pull-left">
+								<p>
+									<span>{{deal.departure}}</span>
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span>{{deal.arrival}}</span>
+								</p>
+								<p class="font-italic">{{deal.transport}} {{deal.reference}} for {{deal.duration.h}}h{{deal.duration.m}}</p>
+							</div>
+							<div class="pull-right">{{deal.cost}}&euro;</div>
+						  </li>
+						</ul>
+						<div ng-show="!(deals|filter:{ departure: fromLBL, arrival : toLBL }).length">
+							<p class="trip-search__no-results">No results!</p>
+						</div>
+						<button type="button" class="btn btn-danger" ng-click="reset()">
+						  <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Reset
+						</button>
+					</section>
+				</div>
+			</div>
+		</div>	
+	</div>
+</main>
+
+<script src="js/home.js"></script>
+</body>
+</html>

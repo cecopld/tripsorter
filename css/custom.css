@@ -1,0 +1,96 @@
+/* CSS used here will be applied after bootstrap.css */
+html {
+	height: 100%;
+	min-height: 100%;
+}
+body { 
+ background: url('../img/design/1.jpg') no-repeat center center fixed; 
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ height: 100%;
+ min-height: 100%;
+}
+
+.trip-search__header {
+	background-color: #428bca;
+	margin-bottom: 40px;
+}
+
+.trip-search__header h1 {
+	color: #fff;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+a:link, a:active,a:visited,a:focus,a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: blue;
+}
+
+
+.clfx:before,
+.clfx:after {
+    content: " ";
+    display: table;
+}
+
+.clfx:after {
+    clear: both;
+}
+
+
+
+.fade{
+    display: none;
+    opacity: 0;
+}
+
+.default{
+	display: block;
+    opacity: 1;
+	-webkit-transition: opacity 2s; /* For Safari 3.1 to 6.0 */
+    transition: opacity 2s;
+}
+
+.white-bg {
+	background-color: #fff;
+}
+
+.block {
+	display: block;
+}
+
+.w100 {
+	width: 100%;
+}
+.selected {
+	background-color: #f2f2f2;
+}
+.odd {
+	background-color: #f2f2f2;
+}
+
+.trip-search__form select {
+	line-height: 30px;
+	height: 30px;
+	padding: 5px;
+}
+
+.trip-search__form label , .trip-search__form .btn-group{
+	margin-bottom: 10px;
+}
+
+.trip-search__no-results {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.trip-search__error-msg {
+	color: red;
+}
